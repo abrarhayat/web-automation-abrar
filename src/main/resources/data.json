@@ -1,0 +1,30 @@
+[
+  {
+    "id": "4677032fc3f06",
+    "title": "The Light",
+    "imageLocation": "src/main/resources/images/the-light.jpg",
+    "price": "25",
+    "description": "A fisherman is interrogated by the local gangs."
+  },
+  {
+    "id": "51744db98c65e",
+    "title": "The Bridge",
+    "imageLocation": "src/main/resources/images/the-bridge.jpg",
+    "price": "35.5",
+    "description": "A story about a remote village."
+  },
+  {
+    "id": "33030fee57466",
+    "title": "The Light 2",
+    "imageLocation": "src/main/resources/images/the-light2.jpg",
+    "price": "100",
+    "description": "Sequel to the fisherman story."
+  },
+  {
+    "id": "33030fee57477",
+    "title": "The Forest",
+    "imageLocation": "src/main/resources/images/the-forest.jpg",
+    "price": "25.8",
+    "description": "A book about Forests."
+  }
+]
