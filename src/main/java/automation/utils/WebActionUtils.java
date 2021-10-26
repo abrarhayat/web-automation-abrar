@@ -68,6 +68,21 @@ public abstract class WebActionUtils {
         }
     }
 
+    public void selectDropdownWithMatchingText(String matchingText, String dropdownSelectId, WebDriver driver) {
+        Select select = new Select(driver.findElement(By.id(dropdownSelectId)));
+        String optionValue = null;
+        try {
+            for (WebElement option : select.getOptions()) {
+                if (option.getText().toLowerCase().contains(matchingText.toLowerCase())) {
+                    optionValue = option.getAttribute("value");
+                }
+            }
+            select.selectByValue(optionValue);
+        } catch (Exception ex) {
+            log.error("Could not select from the dropdown " + select);
+        }
+    }
+
     public static void switchToMainFrame(WebDriver driver) {
         driver.switchTo().parentFrame();
     }
@@ -75,6 +90,10 @@ public abstract class WebActionUtils {
     public static void switchToActiveFrame(WebDriver driver) {
         driver.switchTo().activeElement();
         waitForVisibility();
+    }
+
+    public void clickOnBody(WebDriver driver) {
+        driver.findElement(By.xpath("//html")).click();
     }
 
     public static void selectAllCheckBoxes(WebDriver driver) {
