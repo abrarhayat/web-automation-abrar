@@ -2,6 +2,8 @@ package initiationTest;
 
 import automation.utils.Browser;
 import automation.utils.Initiation;
+import automation.utils.WebActionUtils;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 /**
@@ -15,5 +17,11 @@ public class TestWebSurfing extends Initiation {
     public void test(){
         setUpWebDriver(Browser.CHROME);
         driver.get("https://www.google.com");
+    }
+
+    @AfterTest
+    public void after() {
+        WebActionUtils.waitForVisibility();
+        driver.quit();
     }
 }
