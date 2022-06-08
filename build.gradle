@@ -47,4 +47,6 @@ dependencies {
 
     compile group: 'org.jxls', name: 'jxls-jexcel', version: '1.0.9'
     compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.9'
+    compile group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '3.8.1'
+
 }

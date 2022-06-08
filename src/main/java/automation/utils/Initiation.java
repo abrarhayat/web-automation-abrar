@@ -1,9 +1,11 @@
 package automation.utils;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,10 +22,6 @@ public abstract class Initiation {
 
     protected static void setUpWebDriver(Browser browser) {
         switch (browser) {
-            case CHROME:
-                setUpChromeDriver();
-                break;
-
             case FIREFOX:
                 setUpGeckoDriver();
                 break;
@@ -40,40 +38,24 @@ public abstract class Initiation {
     }
 
     private static void setUpChromeDriver() {
-        String operatingSystem = getOperatingSystem();
-        System.out.println(operatingSystem);
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("start-maximized");
 
-        switch (operatingSystem) {
-            case "windows":
-                System.setProperty(Constants.CHROME_DRIVER_SYSTEM_PROPERTY, Constants.CHROME_DRIVER_WINDOWS_DIR);
-                break;
-            case "linux":
-                System.setProperty(Constants.CHROME_DRIVER_SYSTEM_PROPERTY, Constants.CHROME_DRIVER_LINUX_DIR);
-        }
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(chromeOptions);
         log.info("Created an Instance of Chrome Driver.");
     }
 
     private static void setUpGeckoDriver() {
-        String operatingSystem = getOperatingSystem();
-        System.out.println(operatingSystem);
-
-        switch (operatingSystem) {
-            case "windows":
-                System.setProperty(Constants.FIREFOX_DRIVER_SYSTEM_PROPERTY, Constants.FIREFOX_DRIVER_WINDOWS_DIR);
-                break;
-            case "linux":
-                System.setProperty(Constants.FIREFOX_DRIVER_SYSTEM_PROPERTY, Constants.FIREFOX_DRIVER_LINUX_DIR);
-        }
+        WebDriverManager.firefoxdriver().setup();
         driver = new FirefoxDriver();
         driver.manage().window().maximize();
         log.info("Created an Instance of Firefox Driver.");
     }
 
     private static void setUpPhantomJSDriver() {
-
+        WebDriverManager.phantomjs().setup();
+        driver = new PhantomJSDriver();
     }
 
     public static String getOperatingSystem() {
