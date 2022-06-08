@@ -5,7 +5,7 @@ package automation.utils;
  * since 9/9/20
  */
 
-abstract class Constants {
+public class Constants {
 
     //Windows Web Driver Directories
     final static String CHROME_DRIVER_WINDOWS_DIR = "webDriverExecutables/chrome/chromedriver_win32/chromedriver.exe";
