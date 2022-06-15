@@ -33,7 +33,7 @@ public class SubmitProductTest extends Initiation {
     @Test
     public void testSubmitFromJSON() {
         AddProductPage addProductPage = new AddProductPage(Initiation.driver);
-        ParseBooksFromJSON.getBooks().forEach(book -> {
+        ParseBooksFromJSON.getBooks("src/main/resources/data.json").forEach(book -> {
             addProductPage.submitProduct(book.getTitle(),
                     book.getImageLocation(), book.getPrice(), book.getDescription());
             WebActionUtils.waitForVisibility(5);

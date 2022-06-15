@@ -20,4 +20,15 @@ public class LoginUtils {
             return null;
         }
     }
+
+    public static CSVRecord getLoginDetails(String loginDetailsDir) {
+        try {
+            CSVParser parser = CSVReader.getCSVParser(loginDetailsDir, true);
+            assert parser != null;
+            return parser.getRecords().get(0);
+        } catch (IOException ioException) {
+            log.error(ioException.toString());
+            return null;
+        }
+    }
 }

@@ -5,16 +5,18 @@ plugins {
 group 'automation'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
 
-jar {
+task fatJar(type: Jar) {
     manifest {
-        attributes "Main-Class": "ENTER_MAIN_CLASS_NAME_HERE"
+        attributes 'Implementation-Title': 'Gradle Jar File',
+                'Main-Class': 'app.shopApp.SubmitProductFromJsonTest'
     }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }
 
 dependencies {
