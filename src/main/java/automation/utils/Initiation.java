@@ -33,8 +33,8 @@ public abstract class Initiation {
             default:
                 setUpChromeDriver();
                 break;
-
         }
+        SystemUtils.setupUpWebDriverPurgeHook(driver);
     }
 
     private static void setUpChromeDriver() {

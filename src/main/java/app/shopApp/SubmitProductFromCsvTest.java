@@ -1,7 +1,6 @@
 package app.shopApp;
 
 import automation.poms.shopApp.AddProductPage;
-import automation.poms.shopApp.LoginPage;
 import automation.utils.*;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -11,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static automation.utils.WebActionUtils.waitForVisibility;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author abrar
@@ -22,12 +22,9 @@ public class SubmitProductFromCsvTest extends Initiation {
     final static Logger log = LoggerFactory.getLogger(SubmitProductFromCsvTest.class);
 
     public static void main(String[] args) {
-        setUpWebDriver(browser);
-        LoginPage loginPage = new LoginPage(Initiation.driver);
-        CSVRecord loginDetails = LoginUtils.getLoginDetails("data\\loginDetails.csv");
-        loginPage.login(loginDetails.get("email"), loginDetails.get("password"));
-
         try {
+            setUpWebDriver(browser);
+            ShopAppUtils.login(driver);
             CSVParser parser = CSVReader.getCSVParser("data\\data.csv", true);
             AddProductPage addProductPage = new AddProductPage(Initiation.driver);
             assert parser != null;
@@ -35,10 +32,11 @@ public class SubmitProductFromCsvTest extends Initiation {
                 addProductPage.submitProduct(record.get("title"), record.get("image"), record.get("price"),
                         record.get("description"));
                 WebActionUtils.waitForVisibility(5);
-                if (!driver.getCurrentUrl().contains("admin/products"))
-                    throw new Exception("Failed to submit product!");
+                assertThat(driver.getCurrentUrl().contains("admin/products")).isTrue();
                 log.info("Submitted the products successfully!");
             }
+            waitForVisibility();
+            ShopAppUtils.logout(driver);
         } catch (Exception ex) {
             log.error(ex.toString());
             try {
@@ -47,10 +45,5 @@ public class SubmitProductFromCsvTest extends Initiation {
                 log.error(ex1.toString());
             }
         }
-
-        waitForVisibility();
-        loginPage = new LoginPage(Initiation.driver);
-        loginPage.logout();
-        driver.close();
     }
 }

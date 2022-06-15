@@ -1,10 +1,8 @@
 package webAppAssertion.shopApp;
 
 import automation.poms.shopApp.AddProductPage;
-import automation.poms.shopApp.LoginPage;
 import automation.utils.*;
 import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterTest;
@@ -25,9 +23,7 @@ public class SubmitProductTest extends Initiation {
     @BeforeTest
     public void webDriverInit() {
         setUpWebDriver(browser);
-        LoginPage loginPage = new LoginPage(Initiation.driver);
-        CSVRecord loginDetails = LoginUtils.getLoginDetails();
-        loginPage.login(loginDetails.get("email"), loginDetails.get("password"));
+        ShopAppUtils.login(driver);
     }
 
     @Test
@@ -52,15 +48,13 @@ public class SubmitProductTest extends Initiation {
                 WebActionUtils.waitForVisibility(5);
                 assertThat(driver.getCurrentUrl().contains("admin/products")).isTrue();
             });
-        } catch (NullPointerException ex) {
+        } catch (Exception ex) {
             log.error(ex.toString());
         }
     }
 
     @AfterTest
     public void kill() {
-        LoginPage loginPage = new LoginPage(Initiation.driver);
-        loginPage.logout();
-        driver.close();
+        ShopAppUtils.logout(driver);
     }
 }

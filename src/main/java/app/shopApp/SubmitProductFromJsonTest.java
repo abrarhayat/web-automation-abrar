@@ -2,15 +2,14 @@ package app.shopApp;
 
 import app.AppRunner;
 import automation.poms.shopApp.AddProductPage;
-import automation.poms.shopApp.LoginPage;
 import automation.utils.*;
-import org.apache.commons.csv.CSVRecord;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static automation.utils.WebActionUtils.waitForVisibility;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author abrar
@@ -22,23 +21,19 @@ public class SubmitProductFromJsonTest extends Initiation {
     final static Logger log = LoggerFactory.getLogger(AppRunner.class);
 
     public static void main(String[] args) {
-        setUpWebDriver(browser);
-
-        LoginPage loginPage = new LoginPage(Initiation.driver);
-        CSVRecord loginDetails = LoginUtils.getLoginDetails("data\\loginDetails.csv");
-        loginPage.login(loginDetails.get("email"), loginDetails.get("password"));
-
-        AddProductPage addProductPage = new AddProductPage(Initiation.driver);
-
         try {
+            setUpWebDriver(browser);
+            ShopAppUtils.login(driver);
+            AddProductPage addProductPage = new AddProductPage(Initiation.driver);
             ParseBooksFromJSON.getBooks("data\\data.json").forEach(book -> {
                 addProductPage.submitProduct(book.getTitle(),
                         book.getImageLocation(), book.getPrice(), book.getDescription());
                 waitForVisibility(5);
             });
-            if (!driver.getCurrentUrl().contains("admin/products"))
-                throw new Exception("Failed to submit product!");
+            assertThat(driver.getCurrentUrl().contains("admin/products")).isTrue();
             log.info("Submitted the products successfully!");
+            waitForVisibility();
+            ShopAppUtils.logout(driver);
         } catch (Exception ex) {
             log.error(ex.toString());
             try {
@@ -47,10 +42,5 @@ public class SubmitProductFromJsonTest extends Initiation {
                 log.error(ex1.toString());
             }
         }
-
-        waitForVisibility();
-        loginPage = new LoginPage(Initiation.driver);
-        loginPage.logout();
-        driver.close();
     }
 }
