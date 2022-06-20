@@ -1,0 +1,16 @@
+[
+  {
+    "id": "33030fee57466",
+    "title": "The Light 2",
+    "imageLocation": "data/the-light2.jpg",
+    "price": "100",
+    "description": "Sequel to the fisherman story."
+  },
+  {
+    "id": "33030fee57477",
+    "title": "The Forest",
+    "imageLocation": "data/the-forest.jpg",
+    "price": "25.8",
+    "description": "A book about Forests."
+  }
+]

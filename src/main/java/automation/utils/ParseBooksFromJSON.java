@@ -15,12 +15,12 @@ import org.json.simple.parser.JSONParser;
  */
 
 public class ParseBooksFromJSON {
-    public static List<Book> getBooks() {
+    public static List<Book> getBooks(String jsonDir) {
         JSONParser parser = new JSONParser();
         List<Book> books = new ArrayList<>();
         try {
             JSONArray array = (JSONArray) parser.parse(
-                    new FileReader("src/main/resources/data.json"));
+                    new FileReader(jsonDir));
             String[] keys = {"title", "imageLocation", "price", "description"};
 
             for (Object o : array) {
