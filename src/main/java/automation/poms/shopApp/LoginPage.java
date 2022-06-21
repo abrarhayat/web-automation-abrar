@@ -28,7 +28,7 @@ public class LoginPage extends AbstractPOM {
     WebElement logoutButton;
 
     public void login(String emailAddress, String passwordText) {
-        driver.get("http://localhost:3000/login");
+        driver.get(CURRENT_CONTEXT + "/login");
         email.sendKeys(emailAddress);
         password.sendKeys(passwordText);
         loginButton.click();

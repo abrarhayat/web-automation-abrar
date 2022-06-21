@@ -26,7 +26,7 @@ public class AdminProductPage extends AbstractPOM {
     int numProducts;
 
     public void deleteFirstProduct() {
-        driver.get("http://localhost:3000/admin/products");
+        driver.get(CURRENT_CONTEXT + "/admin/products");
         int noOfProductsLeft = productDeleteButtons.size();
         if (noOfProductsLeft > 0) {
             productDeleteButtons.get(0).click();
@@ -34,7 +34,7 @@ public class AdminProductPage extends AbstractPOM {
     }
 
     public void clickEditButton(int productIndex) {
-        driver.get("http://localhost:3000/admin/products");
+        driver.get(CURRENT_CONTEXT + "/admin/products");
         numProducts = updateButtons.size();
         if (productIndex < numProducts) {
             updateButtons.get(productIndex).click();

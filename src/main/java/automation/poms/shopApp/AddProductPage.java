@@ -35,7 +35,7 @@ public class AddProductPage extends AbstractPOM {
 
     public void submitProduct(String title, String imageLocation, String price, String description) {
         File imageFile = new File(imageLocation);
-        driver.get("http://localhost:3000/admin/add-product");
+        driver.get(CURRENT_CONTEXT + "/admin/add-product");
         this.title.sendKeys(title);
         this.image.sendKeys(imageFile.getAbsolutePath());
         this.price.sendKeys(price);

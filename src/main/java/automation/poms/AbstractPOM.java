@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public abstract class AbstractPOM {
     protected WebDriver driver;
+    protected final String CURRENT_CONTEXT = "http://localhost:3000";
 
     public AbstractPOM(WebDriver driver) {
         this.driver = driver;

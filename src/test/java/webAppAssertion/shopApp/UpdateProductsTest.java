@@ -1,12 +1,10 @@
 package webAppAssertion.shopApp;
 
 import automation.poms.shopApp.AdminProductPage;
-import automation.poms.shopApp.LoginPage;
 import automation.poms.shopApp.UpdateProductPage;
 import automation.utils.Browser;
 import automation.utils.Initiation;
-import automation.utils.LoginUtils;
-import org.apache.commons.csv.CSVRecord;
+import automation.utils.ShopAppUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterTest;
@@ -27,9 +25,7 @@ public class UpdateProductsTest extends Initiation {
     @BeforeTest
     public void webDriverInit() {
         setUpWebDriver(browser);
-        LoginPage loginPage = new LoginPage(Initiation.driver);
-        CSVRecord loginDetails = LoginUtils.getLoginDetails();
-        loginPage.login(loginDetails.get("email"), loginDetails.get("password"));
+        ShopAppUtils.login(driver);
     }
 
     @Test
@@ -48,8 +44,6 @@ public class UpdateProductsTest extends Initiation {
 
     @AfterTest
     public void kill() {
-        LoginPage loginPage = new LoginPage(Initiation.driver);
-        loginPage.logout();
-        driver.close();
+        ShopAppUtils.logout(driver);
     }
 }
