@@ -8,7 +8,8 @@ public class ShopAppUtils {
 
     public static void login(WebDriver driver) {
         LoginPage loginPage = new LoginPage(driver);
-        CSVRecord loginDetails = LoginUtils.getLoginDetails("data\\loginDetails.csv");
+        CSVRecord loginDetails = LoginUtils.getLoginDetails(String.join(SystemUtils.getFileSeparator(),
+                "data", "loginDetails.csv"));
         assert loginDetails != null;
         loginPage.login(loginDetails.get("email"), loginDetails.get("password"));
     }

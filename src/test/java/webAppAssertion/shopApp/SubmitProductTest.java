@@ -29,18 +29,20 @@ public class SubmitProductTest extends Initiation {
     @Test
     public void testSubmitFromJSON() {
         AddProductPage addProductPage = new AddProductPage(Initiation.driver);
-        ParseBooksFromJSON.getBooks("src/main/resources/data.json").forEach(book -> {
-            addProductPage.submitProduct(book.getTitle(),
-                    book.getImageLocation(), book.getPrice(), book.getDescription());
-            WebActionUtils.waitForVisibility(5);
-            assertThat(driver.getCurrentUrl().contains("admin/products")).isTrue();
-        });
+        ParseBooksFromJSON.getBooks(String.join(SystemUtils.getFileSeparator(), "src", "main", "resources", "data.json"))
+                .forEach(book -> {
+                    addProductPage.submitProduct(book.getTitle(),
+                            book.getImageLocation(), book.getPrice(), book.getDescription());
+                    WebActionUtils.waitForVisibility(5);
+                    assertThat(driver.getCurrentUrl().contains("admin/products")).isTrue();
+                });
     }
 
     @Test
     public void testSubmitFromCSV() {
         try {
-            CSVParser parser = CSVReader.getCSVParser("src/main/resources/data.csv", true);
+            CSVParser parser = CSVReader.getCSVParser(String.join(SystemUtils.getFileSeparator(),
+                    "src", "main", "resources", "data.csv"), true);
             AddProductPage addProductPage = new AddProductPage(Initiation.driver);
             parser.forEach(record -> {
                 addProductPage.submitProduct(record.get("title"), record.get("image"),

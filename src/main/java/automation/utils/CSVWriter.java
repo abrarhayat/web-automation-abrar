@@ -2,6 +2,7 @@ package automation.utils;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.joda.time.DateTime;
 import org.testng.annotations.Test;
 
 import java.io.BufferedWriter;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * @author abrar
@@ -18,15 +20,13 @@ import java.util.ArrayList;
  */
 
 public class CSVWriter {
-    private static String CSV_FILE_PATH = "src\\main\\resources\\URLTestResult\\TestData\\URLTestResult.csv";
+    private static final String CSV_FILE_PATH = String.join(SystemUtils.getFileSeparator(),
+            "src", "main", "resources", "written_data.csv");
 
     public static void writeToCSV(String filePath, ArrayList<String> records) {
-        if (System.getProperty("os.name").toLowerCase().equals("linux")) {
-            filePath = filePath.replaceAll("\\\\", File.separator);
-        }
         try {
-            String destinationDir = "D:\\IdeaProjects\\From THERAP CODEBASE\\test-automation-2\\" +
-                    filePath.substring(0, filePath.lastIndexOf("\\"));
+            String destinationDir = "new_test_dir" + new DateTime() +
+                    filePath.substring(0, filePath.lastIndexOf(SystemUtils.getFileSeparator()));
             System.out.println("Result destination directory: " + destinationDir);
             File destination = new File(destinationDir);
             //making the destination dir
@@ -65,8 +65,8 @@ public class CSVWriter {
     }
 
     @Test
-    public void makeDirTest(){
-        File f = new File("D:\\IdeaProjects\\From THERAP CODEBASE\\test-automation-2\\src\\main\\java\\testFolder");
+    public void makeDirTest() {
+        File f = new File("new_test_dir" + new DateTime());
         f.mkdir();
     }
 }

@@ -5,6 +5,7 @@ import automation.poms.shopApp.UpdateProductPage;
 import automation.utils.Browser;
 import automation.utils.Initiation;
 import automation.utils.ShopAppUtils;
+import automation.utils.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterTest;
@@ -36,7 +37,8 @@ public class UpdateProductsTest extends Initiation {
             adminProductPage.clickEditButton(updateCount);
             UpdateProductPage updateProductPage = new UpdateProductPage(Initiation.driver);
             updateProductPage.updateProduct(" Updated",
-                    "20", "src/main/resources/images/abandoned.jpg",
+                    "20", String.join(SystemUtils.getFileSeparator(),
+                            "src", "main", "resources", "images", "abandoned.jpg"),
                     " Updated");
             assertThat(driver.getCurrentUrl().contains("admin/products")).isTrue();
         }
