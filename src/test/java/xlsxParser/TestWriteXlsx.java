@@ -10,8 +10,7 @@ import org.testng.annotations.Test;
  */
 
 public class TestWriteXlsx {
-    static String FILE_NAME = String.join(SystemUtils.getFileSeparator(),
-            "src", "main", "resources", "written_data.xlsx");
+    static String FILE_NAME = SystemUtils.getPath("src", "main", "resources", "written_data.xlsx");
 
     @Test
     public void test() {

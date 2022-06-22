@@ -12,8 +12,8 @@ public class LoginUtils {
 
     public static CSVRecord getLoginDetails() {
         try {
-            CSVParser parser = CSVReader.getCSVParser(String.join(SystemUtils.getFileSeparator(),
-                    "src", "main", "resources", "loginDetails.csv"), true);
+            CSVParser parser = CSVReader.getCSVParser(SystemUtils.getPath("src", "main", "resources",
+                    "loginDetails.csv"), true);
             assert parser != null;
             return parser.getRecords().get(0);
         } catch (IOException ioException) {

@@ -27,7 +27,7 @@ public class UpdateProductsTest extends Initiation {
                 adminProductPage.clickEditButton(updateCount);
                 UpdateProductPage updateProductPage = new UpdateProductPage(Initiation.driver);
                 updateProductPage.updateProduct(" Updated",
-                        "20", String.join(SystemUtils.getFileSeparator(), "data", "abandoned.jpg"),
+                        "20", SystemUtils.getPath("data", "abandoned.jpg"),
                         " Updated");
                 assertThat(driver.getCurrentUrl().contains("admin/products")).isTrue();
                 log.info("Updated the products successfully!");

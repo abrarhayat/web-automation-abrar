@@ -14,8 +14,7 @@ import static automation.utils.CSVReader.parseCSV;
  */
 
 public class ReadCSVTest {
-    private static final String CSV_FILE_PATH = String.join(SystemUtils.getFileSeparator(),
-            "src", "main", "resources", "data.csv");
+    private static final String CSV_FILE_PATH = SystemUtils.getPath("src", "main", "resources", "data.csv");
 
     @Test
     public void testReadCSV() {

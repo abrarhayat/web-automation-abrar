@@ -20,8 +20,7 @@ import java.util.Date;
  */
 
 public class CSVWriter {
-    private static final String CSV_FILE_PATH = String.join(SystemUtils.getFileSeparator(),
-            "src", "main", "resources", "written_data.csv");
+    private static final String CSV_FILE_PATH = SystemUtils.getPath("src", "main", "resources", "written_data.csv");
 
     public static void writeToCSV(String filePath, ArrayList<String> records) {
         try {

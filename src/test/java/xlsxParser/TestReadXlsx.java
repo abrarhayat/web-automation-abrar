@@ -10,8 +10,7 @@ import org.testng.annotations.Test;
  */
 
 public class TestReadXlsx {
-    static String FILE_LOCATION = String.join(SystemUtils.getFileSeparator(),
-            "src", "main", "resources", "data.xlsx");
+    static String FILE_LOCATION = SystemUtils.getPath("src", "main", "resources", "data.xlsx");
 
     @Test
     public void test() {
