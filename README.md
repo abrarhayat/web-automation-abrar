@@ -18,4 +18,8 @@
 
 ### Go the _src/test/java_ and run the desired tests using the run icon beside each _@Test_ annotation
 
-#### Tests may fail due to outdated drivers, we can download the latest drivers from here: [Chrome Driver](https://chromedriver.chromium.org/downloads) / [Firefox Driver](https://github.com/mozilla/geckodriver/releases) and then put the respective driver executables in the _webDriverExecutables_ folder for the respective operating systems
+---
+
+### Independent Fat JAR / Uber JAR apps
+
+### Now, you can create Fat Jars apps by running the _fatJar_ task in the _build.gradle_ file. The resulting JAR directory **MUST** have the data folder in that same directory for the JARs to work
