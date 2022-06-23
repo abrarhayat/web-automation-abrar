@@ -25,7 +25,7 @@ public class SubmitProductFromCsvTest extends Initiation {
         try {
             setUpWebDriver(browser);
             ShopAppUtils.login(driver);
-            CSVParser parser = CSVReader.getCSVParser("data\\data.csv", true);
+            CSVParser parser = CSVReader.getCSVParser(SystemUtils.getPath("data", "data.csv"), true);
             AddProductPage addProductPage = new AddProductPage(Initiation.driver);
             assert parser != null;
             for (CSVRecord record : parser) {

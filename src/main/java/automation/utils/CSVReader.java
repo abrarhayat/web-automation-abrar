@@ -22,9 +22,6 @@ public class CSVReader {
     public static List<String> parseCSV(String csvFilePath) {
         List<String> dataList = new ArrayList<>();
         try {
-            if (System.getProperty("os.name").toLowerCase().equals("linux")) {
-                csvFilePath = csvFilePath.replaceAll("\\\\", File.separator);
-            }
             Reader reader = Files.newBufferedReader(Paths.get(csvFilePath).toAbsolutePath());
             CSVParser csvParser = new CSVParser(reader, CSVFormat.RFC4180);
             for (CSVRecord csvRecord : csvParser) {
@@ -44,9 +41,6 @@ public class CSVReader {
 
     public static CSVParser getCSVParser(String csvFilePath, boolean withHeader) {
         try {
-            if (System.getProperty("os.name").toLowerCase().equals("linux")) {
-                csvFilePath = csvFilePath.replaceAll("\\\\", File.separator);
-            }
             Reader reader = Files.newBufferedReader(Paths.get(csvFilePath).toAbsolutePath());
             return withHeader
                     ? new CSVParser(reader, CSVFormat.EXCEL.withHeader())

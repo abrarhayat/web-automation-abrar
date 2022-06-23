@@ -25,11 +25,12 @@ public class SubmitProductFromJsonTest extends Initiation {
             setUpWebDriver(browser);
             ShopAppUtils.login(driver);
             AddProductPage addProductPage = new AddProductPage(Initiation.driver);
-            ParseBooksFromJSON.getBooks("data\\data.json").forEach(book -> {
-                addProductPage.submitProduct(book.getTitle(),
-                        book.getImageLocation(), book.getPrice(), book.getDescription());
-                waitForVisibility(5);
-            });
+            ParseBooksFromJSON.getBooks(SystemUtils.getPath("data", "data.json"))
+                    .forEach(book -> {
+                        addProductPage.submitProduct(book.getTitle(),
+                                book.getImageLocation(), book.getPrice(), book.getDescription());
+                        waitForVisibility(5);
+                    });
             assertThat(driver.getCurrentUrl().contains("admin/products")).isTrue();
             log.info("Submitted the products successfully!");
             waitForVisibility();
