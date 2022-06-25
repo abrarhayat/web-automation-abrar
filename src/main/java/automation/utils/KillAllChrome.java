@@ -1,6 +1,6 @@
 package automation.utils;
 
-import static automation.utils.Initiation.getOperatingSystem;
+import static automation.utils.AbstractTest.getOperatingSystem;
 
 /**
  * @author abrar

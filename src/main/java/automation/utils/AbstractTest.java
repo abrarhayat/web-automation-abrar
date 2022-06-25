@@ -14,9 +14,9 @@ import org.slf4j.LoggerFactory;
  * since 9/9/20
  */
 
-public abstract class Initiation {
+public abstract class AbstractTest {
 
-    private static final Logger log = LoggerFactory.getLogger(Initiation.class);
+    private static final Logger log = LoggerFactory.getLogger(AbstractTest.class);
     protected static WebDriver driver;
 
 

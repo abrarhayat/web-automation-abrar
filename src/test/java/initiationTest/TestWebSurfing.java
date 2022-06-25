@@ -1,7 +1,7 @@
 package initiationTest;
 
 import automation.utils.Browser;
-import automation.utils.Initiation;
+import automation.utils.AbstractTest;
 import automation.utils.WebActionUtils;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
  * since 9/9/20
  */
 
-public class TestWebSurfing extends Initiation {
+public class TestWebSurfing extends AbstractTest {
 
     @Test
     public void test(){
@@ -22,6 +22,5 @@ public class TestWebSurfing extends Initiation {
     @AfterTest
     public void after() {
         WebActionUtils.waitForVisibility();
-        driver.quit();
     }
 }
