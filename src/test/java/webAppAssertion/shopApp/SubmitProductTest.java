@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * since 9/9/20
  */
 
-public class SubmitProductTest extends Initiation {
+public class SubmitProductTest extends AbstractTest {
     Browser browser = Browser.CHROME;
     final static Logger log = LoggerFactory.getLogger(SubmitProductTest.class);
 
@@ -28,7 +28,7 @@ public class SubmitProductTest extends Initiation {
 
     @Test
     public void testSubmitFromJSON() {
-        AddProductPage addProductPage = new AddProductPage(Initiation.driver);
+        AddProductPage addProductPage = new AddProductPage(AbstractTest.driver);
         ParseBooksFromJSON.getBooks(SystemUtils.getPath("src", "main", "resources", "data.json"))
                 .forEach(book -> {
                     addProductPage.submitProduct(book.getTitle(),
@@ -43,7 +43,7 @@ public class SubmitProductTest extends Initiation {
         try {
             CSVParser parser = CSVReader.getCSVParser(SystemUtils.getPath("src", "main", "resources", "data.csv"),
                     true);
-            AddProductPage addProductPage = new AddProductPage(Initiation.driver);
+            AddProductPage addProductPage = new AddProductPage(AbstractTest.driver);
             parser.forEach(record -> {
                 addProductPage.submitProduct(record.get("title"), record.get("image"),
                         record.get("price"), record.get("description"));

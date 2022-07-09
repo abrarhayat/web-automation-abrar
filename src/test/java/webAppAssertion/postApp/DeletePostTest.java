@@ -3,9 +3,8 @@ package webAppAssertion.postApp;
 import automation.poms.postApp.FeedPage;
 import automation.poms.postApp.LoginPage;
 import automation.utils.Browser;
-import automation.utils.Initiation;
+import automation.utils.AbstractTest;
 import automation.utils.LoginUtils;
-import automation.utils.WebActionUtils;
 import org.apache.commons.csv.CSVRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +18,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
  * @author abrar
  * since 1/16/21
  */
-public class DeletePostTest extends Initiation {
+public class DeletePostTest extends AbstractTest {
     Browser browser = Browser.CHROME;
     final static Logger log = LoggerFactory.getLogger(DeletePostTest.class);
     FeedPage feedPage;

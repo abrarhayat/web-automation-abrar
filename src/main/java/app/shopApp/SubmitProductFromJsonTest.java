@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * since 7/15/22
  */
 
-public class SubmitProductFromJsonTest extends Initiation {
+public class SubmitProductFromJsonTest extends AbstractTest {
     static Browser browser = Browser.CHROME;
     final static Logger log = LoggerFactory.getLogger(AppRunner.class);
 
@@ -24,7 +24,7 @@ public class SubmitProductFromJsonTest extends Initiation {
         try {
             setUpWebDriver(browser);
             ShopAppUtils.login(driver);
-            AddProductPage addProductPage = new AddProductPage(Initiation.driver);
+            AddProductPage addProductPage = new AddProductPage(AbstractTest.driver);
             ParseBooksFromJSON.getBooks(SystemUtils.getPath("data", "data.json"))
                     .forEach(book -> {
                         addProductPage.submitProduct(book.getTitle(),

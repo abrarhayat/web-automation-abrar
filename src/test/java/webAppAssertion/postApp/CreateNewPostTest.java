@@ -3,7 +3,7 @@ package webAppAssertion.postApp;
 import automation.poms.postApp.FeedPage;
 import automation.poms.postApp.LoginPage;
 import automation.utils.Browser;
-import automation.utils.Initiation;
+import automation.utils.AbstractTest;
 import automation.utils.LoginUtils;
 import automation.utils.WebActionUtils;
 import org.apache.commons.csv.CSVRecord;
@@ -23,7 +23,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
  * @author abrar
  * since 1/14/21
  */
-public class CreateNewPostTest extends Initiation {
+public class CreateNewPostTest extends AbstractTest {
 
     Browser browser = Browser.CHROME;
     final static Logger log = LoggerFactory.getLogger(CreateNewPostTest.class);

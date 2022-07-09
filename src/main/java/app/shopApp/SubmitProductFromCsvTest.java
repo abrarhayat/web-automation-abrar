@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * since 7/15/22
  */
 
-public class SubmitProductFromCsvTest extends Initiation {
+public class SubmitProductFromCsvTest extends AbstractTest {
     static Browser browser = Browser.CHROME;
     final static Logger log = LoggerFactory.getLogger(SubmitProductFromCsvTest.class);
 
@@ -26,7 +26,7 @@ public class SubmitProductFromCsvTest extends Initiation {
             setUpWebDriver(browser);
             ShopAppUtils.login(driver);
             CSVParser parser = CSVReader.getCSVParser(SystemUtils.getPath("data", "data.csv"), true);
-            AddProductPage addProductPage = new AddProductPage(Initiation.driver);
+            AddProductPage addProductPage = new AddProductPage(AbstractTest.driver);
             assert parser != null;
             for (CSVRecord record : parser) {
                 addProductPage.submitProduct(record.get("title"), record.get("image"), record.get("price"),

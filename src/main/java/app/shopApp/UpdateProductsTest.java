@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * since 7/15/22
  */
 
-public class UpdateProductsTest extends Initiation {
+public class UpdateProductsTest extends AbstractTest {
     static Browser browser = Browser.CHROME;
     final static Logger log = LoggerFactory.getLogger(UpdateProductsTest.class);
 
@@ -23,9 +23,9 @@ public class UpdateProductsTest extends Initiation {
             ShopAppUtils.login(driver);
             int noOfProductsToUpdate = 1;
             for (int updateCount = 0; updateCount < noOfProductsToUpdate; updateCount++) {
-                AdminProductPage adminProductPage = new AdminProductPage(Initiation.driver);
+                AdminProductPage adminProductPage = new AdminProductPage(AbstractTest.driver);
                 adminProductPage.clickEditButton(updateCount);
-                UpdateProductPage updateProductPage = new UpdateProductPage(Initiation.driver);
+                UpdateProductPage updateProductPage = new UpdateProductPage(AbstractTest.driver);
                 updateProductPage.updateProduct(" Updated",
                         "20", SystemUtils.getPath("data", "abandoned.jpg"),
                         " Updated");

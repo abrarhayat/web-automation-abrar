@@ -14,6 +14,6 @@ public class SystemUtils {
     }
 
     public static String getPath(String... subPaths) {
-        return String.join(FileSystems.getDefault().getSeparator(), subPaths);
+        return String.join(getFileSeparator(), subPaths);
     }
 }
