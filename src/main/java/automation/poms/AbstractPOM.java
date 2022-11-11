@@ -16,4 +16,8 @@ public abstract class AbstractPOM {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+
+    public String getCurrentContext() {
+        return CURRENT_CONTEXT;
+    }
 }

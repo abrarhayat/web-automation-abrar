@@ -13,6 +13,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.testng.AssertJUnit.assertEquals;
 
 /**
  * @author abrar
@@ -39,7 +40,7 @@ public class UpdateProductsTest extends AbstractTest {
             updateProductPage.updateProduct(" Updated",
                     "20", SystemUtils.getPath("src", "main", "resources", "images", "abandoned.jpg"),
                     " Updated");
-            assertThat(driver.getCurrentUrl().contains("admin/products")).isTrue();
+            assertEquals(adminProductPage.getCurrentContext().concat("/admin/products"), driver.getCurrentUrl());
         }
     }
 

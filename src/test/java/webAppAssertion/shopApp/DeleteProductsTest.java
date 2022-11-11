@@ -11,6 +11,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.testng.AssertJUnit.assertEquals;
 
 
 /**
@@ -34,7 +35,7 @@ public class DeleteProductsTest extends AbstractTest {
         for (int deletionCount = 0; deletionCount < noOfProductsToDelete; deletionCount++) {
             AdminProductPage adminProductPage = new AdminProductPage(AbstractTest.driver);
             adminProductPage.deleteFirstProduct();
-            assertThat(driver.getCurrentUrl().contains("admin/products")).isTrue();
+            assertEquals(adminProductPage.getCurrentContext().concat("/admin/products"), driver.getCurrentUrl());
         }
     }
 

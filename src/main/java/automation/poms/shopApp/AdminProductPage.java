@@ -1,6 +1,7 @@
 package automation.poms.shopApp;
 
 import automation.poms.AbstractPOM;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,7 +30,11 @@ public class AdminProductPage extends AbstractPOM {
         driver.get(CURRENT_CONTEXT + "/admin/products");
         int noOfProductsLeft = productDeleteButtons.size();
         if (noOfProductsLeft > 0) {
-            productDeleteButtons.get(0).click();
+            try {
+                productDeleteButtons.get(0).click();
+            } catch (ElementClickInterceptedException exception) {
+                deleteFirstProduct();
+            }
         }
     }
 

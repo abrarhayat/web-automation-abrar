@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.testng.AssertJUnit.assertEquals;
 
 /**
  * @author abrar
@@ -37,7 +37,7 @@ public class SubmitProductTest extends AbstractTest {
                     addProductPage.submitProduct(book.getTitle(),
                             book.getImageLocation(), book.getPrice(), book.getDescription());
                     WebActionUtils.waitForVisibility(5);
-                    assertThat(driver.getCurrentUrl().contains("admin/products")).isTrue();
+                    assertEquals(addProductPage.getCurrentContext().concat("/admin/products"), driver.getCurrentUrl());
                 });
     }
 
@@ -50,7 +50,7 @@ public class SubmitProductTest extends AbstractTest {
                 addProductPage.submitProduct(record.get("title"), record.get("image"),
                         record.get("price"), record.get("description"));
                 WebActionUtils.waitForVisibility(5);
-                assertThat(driver.getCurrentUrl().contains("admin/products")).isTrue();
+                assertEquals(addProductPage.getCurrentContext().concat("/admin/products"), driver.getCurrentUrl());
             });
     }
 
