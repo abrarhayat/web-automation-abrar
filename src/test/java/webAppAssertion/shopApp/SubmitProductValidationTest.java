@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.testng.AssertJUnit.assertEquals;
 
 /**
  * @author Abrar Hayat
@@ -67,8 +67,7 @@ public class SubmitProductValidationTest extends AbstractTest {
         addProductPage.submitProduct(record.get("title"), record.get("image"),
                 record.get("price"), record.get("description"));
         WebActionUtils.waitForVisibility(5);
-        assertThat(getValidationMessage(addProductPage)
-                .equals(expectedValidationMessage)).isTrue();
+        assertEquals(expectedValidationMessage, getValidationMessage(addProductPage));
     }
 
     private void submitMultipleProductsAndGenerateValidation(String fileName, String expectedValidationMessage) throws IOException {
@@ -79,9 +78,7 @@ public class SubmitProductValidationTest extends AbstractTest {
             addProductPage.submitProduct(record.get("title"), record.get("image"),
                     record.get("price"), record.get("description"));
             WebActionUtils.waitForVisibility(5);
-            assertThat(getValidationMessage(addProductPage)
-                    .equals(expectedValidationMessage)).isTrue();
-
+            assertEquals(expectedValidationMessage, getValidationMessage(addProductPage));
         });
     }
 
@@ -107,7 +104,6 @@ public class SubmitProductValidationTest extends AbstractTest {
         } catch (NoSuchElementException noSuchElementException) {
             log.error("Expected Validation did not work!");
         }
-        assertThat(validationMessage != null).isTrue();
         return validationMessage;
     }
 
