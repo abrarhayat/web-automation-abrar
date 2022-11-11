@@ -5,6 +5,8 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 import static automation.utils.CSVReader.getCSVParser;
 import static automation.utils.CSVReader.parseCSV;
 
@@ -22,7 +24,7 @@ public class ReadCSVTest {
     }
 
     @Test()
-    public void testGetCSVParser() {
+    public void testGetCSVParser() throws IOException {
         CSVParser parser = getCSVParser(CSV_FILE_PATH, false);
         for (CSVRecord record : parser) {
             String column1 = record.get(0);

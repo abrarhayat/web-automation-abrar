@@ -4,7 +4,6 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -39,7 +38,7 @@ public class CSVReader {
         return dataList;
     }
 
-    public static CSVParser getCSVParser(String csvFilePath, boolean withHeader) {
+    public static CSVParser getCSVParser(String csvFilePath, boolean withHeader) throws IOException {
         try {
             Reader reader = Files.newBufferedReader(Paths.get(csvFilePath).toAbsolutePath());
             return withHeader
@@ -47,7 +46,7 @@ public class CSVReader {
                     : new CSVParser(reader, CSVFormat.EXCEL);
         } catch (IOException ex) {
             ex.printStackTrace();
-            return null;
+            throw ex;
         }
     }
 }

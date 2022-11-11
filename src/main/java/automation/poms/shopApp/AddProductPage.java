@@ -1,6 +1,7 @@
 package automation.poms.shopApp;
 
 import automation.poms.AbstractPOM;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,6 +34,9 @@ public class AddProductPage extends AbstractPOM {
     @FindBy(css = "button[class='btn btn-submit']")
     WebElement addProductButton;
 
+    @FindBy(className = "user-message--error")
+    WebElement errorMessage;
+
     public void submitProduct(String title, String imageLocation, String price, String description) {
         File imageFile = new File(imageLocation);
         driver.get(CURRENT_CONTEXT + "/admin/add-product");
@@ -41,5 +45,9 @@ public class AddProductPage extends AbstractPOM {
         this.price.sendKeys(price);
         this.description.sendKeys(description);
         this.addProductButton.click();
+    }
+
+    public String getOccurredValidation() throws NoSuchElementException {
+        return errorMessage.getText();
     }
 }
