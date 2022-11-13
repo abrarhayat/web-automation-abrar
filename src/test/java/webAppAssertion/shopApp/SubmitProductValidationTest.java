@@ -31,35 +31,35 @@ public class SubmitProductValidationTest extends AbstractTest {
 
     @Test
     public void testImageSizeValidation() throws IOException {
-        submitMultipleProductsAndGenerateValidation("dataWithLargeImage.csv",
+        submitFirstProductAndGenerateValidation("dataWithLargeImage.csv",
                 "Maximum Image File Size Limit of 10.4 MB Exceeded!");
     }
 
     @Test
     public void testTitleMinValidation() throws IOException {
-        submitProductAndGenerateValidation("dataWithSmallTitle.csv",
+        submitFirstProductAndGenerateValidation("dataWithSmallTitle.csv",
                 "Title length must be in between 5 and 50!");
     }
 
     @Test
     public void testTitleMaxValidation() throws IOException {
-        submitProductAndGenerateValidation("dataWithLargeTitle.csv",
+        submitFirstProductAndGenerateValidation("dataWithLargeTitle.csv",
                 "Title length must be in between 5 and 50!");
     }
 
     @Test
     public void testDescriptionMinValidation() throws IOException {
-        submitProductAndGenerateValidation("dataWithSmallDescription.csv",
+        submitFirstProductAndGenerateValidation("dataWithSmallDescription.csv",
                 "Description length must be in between 5 and 400!");
     }
 
     @Test
     public void testDescriptionMaxValidation() throws IOException {
-        submitProductAndGenerateValidation("dataWithLargeDescription.csv",
+        submitFirstProductAndGenerateValidation("dataWithLargeDescription.csv",
                 "Description length must be in between 5 and 400!");
     }
 
-    private void submitProductAndGenerateValidation(String fileName, String expectedValidationMessage) throws IOException {
+    private void submitFirstProductAndGenerateValidation(String fileName, String expectedValidationMessage) throws IOException {
         AddProductPage addProductPage = new AddProductPage(AbstractTest.driver);
         CSVRecord record = getFirstRecordFrom(fileName);
         assert record != null;
@@ -68,18 +68,6 @@ public class SubmitProductValidationTest extends AbstractTest {
                 record.get("price"), record.get("description"));
         WebActionUtils.waitForVisibility(5);
         assertEquals(expectedValidationMessage, getValidationMessage(addProductPage));
-    }
-
-    private void submitMultipleProductsAndGenerateValidation(String fileName, String expectedValidationMessage) throws IOException {
-        CSVParser parser = CSVReader.getCSVParser(SystemUtils.getPath("src", "main", "resources",
-                fileName), true);
-        AddProductPage addProductPage = new AddProductPage(AbstractTest.driver);
-        parser.forEach(record -> {
-            addProductPage.submitProduct(record.get("title"), record.get("image"),
-                    record.get("price"), record.get("description"));
-            WebActionUtils.waitForVisibility(5);
-            assertEquals(expectedValidationMessage, getValidationMessage(addProductPage));
-        });
     }
 
     private CSVRecord getFirstRecordFrom(String fileName) throws IOException {
