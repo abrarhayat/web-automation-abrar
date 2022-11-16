@@ -1,4 +1,4 @@
-package automation.poms.shopApp;
+package automation.model;
 
 /**
  * @author abrar
