@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,8 +27,8 @@ public abstract class AbstractTest {
                 setUpGeckoDriver();
                 break;
 
-            case PHANTOMJS:
-                setUpPhantomJSDriver();
+            case SAFARI:
+                setUpSafariDriver();
                 break;
 
             default:
@@ -53,9 +54,10 @@ public abstract class AbstractTest {
         log.info("Created an Instance of Firefox Driver.");
     }
 
-    private static void setUpPhantomJSDriver() {
-        WebDriverManager.phantomjs().setup();
-        driver = new PhantomJSDriver();
+    private static void setUpSafariDriver() {
+        WebDriverManager.safaridriver().setup();
+        driver = new SafariDriver();
+        driver.manage().window().maximize();
     }
 
     public static String getOperatingSystem() {

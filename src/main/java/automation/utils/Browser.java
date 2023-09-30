@@ -8,5 +8,5 @@ package automation.utils;
 public enum Browser {
     CHROME,
     FIREFOX,
-    PHANTOMJS
+    SAFARI
 }
