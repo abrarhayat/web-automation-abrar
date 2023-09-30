@@ -16,39 +16,39 @@ task fatJar(type: Jar) {
                 'Main-Class': 'app.shopApp.SubmitProductFromJsonTest'
     }
     archiveBaseName = "${rootProject.name + '-submit-json'}"
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile 'org.testng:testng:7.5'
-    testCompile group: 'org.assertj', name: 'assertj-core', version: '3.11.1'
-    compile group: 'org.assertj', name: 'assertj-core', version: '3.11.1'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    implementation 'org.testng:testng:7.5'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.11.1'
+    implementation group: 'org.assertj', name: 'assertj-core', version: '3.11.1'
 
-    compile group: 'org.seleniumhq.selenium', name: 'selenium-htmlunit-driver', version: '2.52.0'
-    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.14.0'
-    compile group: 'com.codeborne', name: 'phantomjsdriver', version: '1.4.4'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-htmlunit-driver', version: '2.52.0'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.12.1'
+    implementation group: 'com.codeborne', name: 'phantomjsdriver', version: '1.4.4'
 
-    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
-    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 
-    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
-    compile group: 'commons-validator', name: 'commons-validator', version: '1.6'
-    compile group: 'joda-time', name: 'joda-time', version: '2.10'
-    compile group: 'commons-lang', name: 'commons-lang', version: '2.6'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
+    implementation group: 'commons-validator', name: 'commons-validator', version: '1.6'
+    implementation group: 'joda-time', name: 'joda-time', version: '2.10'
+    implementation group: 'commons-lang', name: 'commons-lang', version: '2.6'
 
-    compile group: 'com.univocity', name: 'univocity-parsers', version: '2.7.6'
+    implementation group: 'com.univocity', name: 'univocity-parsers', version: '2.7.6'
 
-    compile group: 'org.jboss', name: 'jboss-common-core', version: '2.5.0.Final'
-    compile group: 'org.jboss.aerogear', name: 'aerogear-otp-java', version: '1.0.0'
+    implementation group: 'org.jboss', name: 'jboss-common-core', version: '2.5.0.Final'
+    implementation group: 'org.jboss.aerogear', name: 'aerogear-otp-java', version: '1.0.0'
 
-    compile group: 'org.apache.commons', name: 'commons-csv', version: '1.1'
-    compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
-    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
+    implementation 'org.apache.commons:commons-csv:1.10.0'
+    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
 
-    compile group: 'org.jxls', name: 'jxls-jexcel', version: '1.0.9'
-    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.9'
-    compile group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '3.8.1'
+    implementation group: 'org.jxls', name: 'jxls-jexcel', version: '1.0.9'
+    implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '3.9'
+    implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '5.5.3'
 
 }
